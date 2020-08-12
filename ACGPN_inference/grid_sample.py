@@ -9,6 +9,6 @@ def grid_sample(input, grid, canvas = None):
         return output
     else:
         input_mask = Variable(input.data.new(input.size()).fill_(1))
-        output_mask = F.grid_sample(input_mask, grid)
-        padded_output = output * output_mask + canvas * (1 - output_mask)
+        output = F.grid_sample(input_mask, grid)
+        padded_output = output * output + canvas * (1 - output)
         return padded_output
